@@ -1,0 +1,9 @@
+# The version label is what Istio uses to split traffic (v1 = stable, v2 = canary)
+version: v1
+replicaCount: 2
+image:
+  repository: canary-demo
+  tag: "1.0.0"
+env:
+  errorRate: "0"
+  delayMs: "0"

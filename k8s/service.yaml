@@ -1,0 +1,15 @@
+# One Service for both versions. Istio decides which version gets each request.
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-app
+  namespace: canary-demo
+  labels:
+    app: demo-app
+spec:
+  selector:
+    app: demo-app
+  ports:
+    - name: http          # the "http" prefix lets Istio treat it as HTTP traffic
+      port: 80
+      targetPort: 8080

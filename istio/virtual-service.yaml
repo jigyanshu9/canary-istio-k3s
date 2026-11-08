@@ -1,0 +1,15 @@
+# Baseline: 80% stable (v1), 20% canary (v2)
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: demo-app
+  namespace: canary-demo
+spec:
+  hosts: ["*"]
+  gateways: ["demo-gateway"]
+  http:
+    - route:
+        - destination: { host: demo-app, subset: v1 }
+          weight: 80
+        - destination: { host: demo-app, subset: v2 }
+          weight: 20
